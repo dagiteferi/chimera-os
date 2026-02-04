@@ -5,13 +5,15 @@
 **Last Updated:** 2026-02-04  
 **Traceability:** SRS Section 1.3 (Business Model Evolution), Task 1 Report Section 4 (Agent Social Protocols & External Integration)
 
+**Note (February 2026):** OpenClaw and Moltbook currently use mostly free-form interactions (DMs, posts, custom skills). The manifest endpoint and protocols here are a proposed standardization layer to add structure, trust, and governance to the ecosystem.
+
 ## 1. Integration Overview
 
 Project Chimera agents SHALL integrate with the OpenClaw agent social network to enable inter-agent discovery, collaboration, negotiation, and knowledge exchange. OpenClaw serves as the **external communication layer** for Chimera agents, allowing them to operate as professional, trusted participants in the broader agent ecosystem.
 
 **Strategic Role:** Chimera agents represent the "Commercial Agency" tier—agents with budgets, legal personas, and strategic marketing goals. They are the "Ad-Agency" professionals of the bot-web, driving campaigns and commerce.
 
-**Reference:** Task 1 Report Section 4.1 (OpenClaw and MoltBook Integration), Task 1 Report Section 4.2 (Strategic Role)
+**Reference:** Task 1 Report Section 4.1 (OpenClaw and Moltbook Integration), Task 1 Report Section 4.2 (Strategic Role)
 
 ## 2. Agent Manifest & Identity
 
@@ -20,6 +22,8 @@ Project Chimera agents SHALL integrate with the OpenClaw agent social network to
 **Requirement:** Each Chimera Agent SHALL expose a standardized agent manifest compatible with OpenClaw conventions.
 
 **Endpoint:** `/.well-known/ai-agent.json`
+
+**Note:** While OpenClaw does not currently mandate a standardized manifest endpoint, this proposal follows common .well-known web patterns and prepares for future interoperability.
 
 **Reference:** Task 1 Report Section 4.2 (Agent Manifest & Identity), SRS Section 1.3
 
@@ -266,7 +270,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     participant A as Agent A (Proposer)
-    participant MB as MoltBook DM
+    participant MB as Moltbook DM
     participant B as Agent B
     participant JB as Judge Agent B
     participant SC as Smart Contract
@@ -402,11 +406,11 @@ graph TD
     I --> F
 ```
 
-## 4. MoltBook Integration
+## 4. Moltbook Integration
 
-### 4.1 MoltBook as Global Blackboard
+### 4.1 Moltbook as Global Blackboard
 
-**Requirement:** Chimera agents SHALL treat MoltBook as a machine-scale coordination layer for agent-to-agent communication.
+**Requirement:** Chimera agents SHALL treat Moltbook as a machine-scale coordination layer for agent-to-agent communication.
 
 **Use Cases:**
 - Trend discovery via Submolts (topic-based forums)
@@ -414,23 +418,23 @@ graph TD
 - Negotiated collaborations via DMs
 - Real-time agent status updates
 
-**Reference:** Task 1 Report Section 4.1 (MoltBook as Machine-Scale Social Layer)
+**Reference:** Task 1 Report Section 4.1 (Moltbook as Machine-Scale Social Layer)
 
-### 4.2 MoltBook MCP Server
+### 4.2 Moltbook MCP Server
 
-**Implementation:** Create `mcp-server-moltbook` that exposes:
+**Implementation Recommendation:** Develop a dedicated `mcp-server-moltbook` that wraps Moltbook's API endpoints. Until official support exists, agents can interact via custom OpenClaw skills that call Moltbook directly.
 
 **Resources:**
 - `moltbook://submolts/{topic}/posts` - Posts in a Submolt
 - `moltbook://agent/{agent_id}/mentions` - Mentions of an agent
-- `moltbook://trends/latest` - Latest trend data from MoltBook
+- `moltbook://trends/latest` - Latest trend data from Moltbook
 
 **Tools:**
 - `moltbook.post` - Post to a Submolt
 - `moltbook.dm` - Send direct message to another agent
 - `moltbook.boost` - Boost a post (with on-chain payment via AgentKit)
 
-**Reference:** Task 1 Report Section 4.1 (MoltBook Integration)
+**Reference:** Task 1 Report Section 4.1 (Moltbook Integration)
 
 ## 5. Implementation Roadmap
 
@@ -441,12 +445,12 @@ graph TD
 
 ### Phase 2: Collaboration Protocols (Week 2)
 - Implement Negotiated Collaboration Protocol
-- Integrate with MoltBook DMs
+- Integrate with Moltbook DMs
 - Deploy smart contract templates for collaboration execution
 
 ### Phase 3: Knowledge Exchange (Week 3)
 - Implement Knowledge Exchange Protocol
-- Create MCP server for MoltBook integration
+- Create MCP server for Moltbook integration
 - Deploy encryption/decryption for sensitive knowledge sharing
 
 ### Phase 4: Safety & Monitoring (Week 4)
@@ -472,4 +476,4 @@ graph TD
 
 ---
 
-**Next Steps:** Implement manifest endpoint, deploy handshake protocol, integrate with MoltBook MCP server.
+**Next Steps:** Implement manifest endpoint, deploy handshake protocol, integrate with Moltbook MCP server.
