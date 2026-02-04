@@ -1,4 +1,43 @@
 # Project Chimera: Comprehensive Submission Report
+## Table of Contents
+
+    - [Introduction](#introduction)
+1. [Project Development Methodology](#project-development-methodology)
+        - [Phase 1: Foundational Setup](#phase-1-foundational-setup)
+        - [Phase 2: Research and Documentation](#phase-2-research-and-documentation)
+2. [1. Research Summary: Key Insights from the Reading Materials](#1-research-summary-key-insights-from-the-reading-materials)
+    - [Big Picture Insight](#big-picture-insight)
+    - [a16z Article – System-Level Takeaways](#a16z-article-system-level-takeaways)
+    - [OpenClaw – Agent Social Networks](#openclaw-agent-social-networks)
+    - [MoltBook – Social Media for Bots](#moltbook-social-media-for-bots)
+    - [Connection to This Project](#connection-to-this-project)
+    - [Engineering Insight](#engineering-insight)
+3. [2. Project Chimera: Autonomous Influencer Network - Architecture Strategy](#2-project-chimera-autonomous-influencer-network---architecture-strategy)
+    - [1. Introduction](#1-introduction)
+    - [2. Core Architectural Principles](#2-core-architectural-principles)
+    - [3. Multi-Agent Swarm Architecture: The FastRender Pattern](#3-multi-agent-swarm-architecture-the-fastrender-pattern)
+        - [3.1 Agent Roles](#31-agent-roles)
+        - [3.2 Agent Workflow Diagram](#32-agent-workflow-diagram)
+        - [3.3 Actionable Design Recommendations for Swarm Orchestration](#33-actionable-design-recommendations-for-swarm-orchestration)
+    - [4. Agent Social Protocols & External Integration](#4-agent-social-protocols-external-integration)
+        - [4.1 OpenClaw and MoltBook Integration](#41-openclaw-and-moltbook-integration)
+        - [4.2 Key Social Protocols for Inter-Agent Communication](#42-key-social-protocols-for-inter-agent-communication)
+        - [4.3 Social Network Communication Diagram](#43-social-network-communication-diagram)
+    - [5. Spec-Driven Development (SDD) Workflow](#5-spec-driven-development-sdd-workflow)
+        - [5.1 SDD Workflow Diagram](#51-sdd-workflow-diagram)
+    - [6. Agent Economic Capabilities](#6-agent-economic-capabilities)
+    - [7. Human-in-the-Loop (HITL) Governance](#7-human-in-the-loop-hitl-governance)
+    - [8. Actionable Design Recommendations (Consolidated)](#8-actionable-design-recommendations-consolidated)
+    - [9. Conclusion & Future Work](#9-conclusion-future-work)
+        - [Research-Style Summary](#research-style-summary)
+        - [Human-Style Summary](#human-style-summary)
+        - [Future Improvement & Next Tasks](#future-improvement-next-tasks)
+    - [10. References](#10-references)
+4. [3. Conclusion](#3-conclusion)
+5. [4. Project Chimera: Submission Checklist](#4-project-chimera-submission-checklist)
+    - [4. Submission Checklist](#4-submission-checklist)
+    - [5. Assessment Rubric: Velocity vs. Distance](#5-assessment-rubric-velocity-vs-distance)
+---
 
 ## Introduction
 
@@ -42,45 +81,7 @@ This section outlines the systematic approach taken from project inception to th
     *   The individual research notes were then systematically collated, synthesized, and expanded upon.
     *   This process culminated in the creation of the `submission_report.md`, which integrates the research findings with a detailed architectural strategy for Project Chimera.
 
-## Table of Contents
 
-    - [Introduction](#introduction)
-1. [Project Development Methodology](#project-development-methodology)
-        - [Phase 1: Foundational Setup](#phase-1-foundational-setup)
-        - [Phase 2: Research and Documentation](#phase-2-research-and-documentation)
-2. [1. Research Summary: Key Insights from the Reading Materials](#1-research-summary-key-insights-from-the-reading-materials)
-    - [Big Picture Insight](#big-picture-insight)
-    - [a16z Article – System-Level Takeaways](#a16z-article-system-level-takeaways)
-    - [OpenClaw – Agent Social Networks](#openclaw-agent-social-networks)
-    - [MoltBook – Social Media for Bots](#moltbook-social-media-for-bots)
-    - [Connection to This Project](#connection-to-this-project)
-    - [Engineering Insight](#engineering-insight)
-3. [2. Project Chimera: Autonomous Influencer Network - Architecture Strategy](#2-project-chimera-autonomous-influencer-network---architecture-strategy)
-    - [1. Introduction](#1-introduction)
-    - [2. Core Architectural Principles](#2-core-architectural-principles)
-    - [3. Multi-Agent Swarm Architecture: The FastRender Pattern](#3-multi-agent-swarm-architecture-the-fastrender-pattern)
-        - [3.1 Agent Roles](#31-agent-roles)
-        - [3.2 Agent Workflow Diagram](#32-agent-workflow-diagram)
-        - [3.3 Actionable Design Recommendations for Swarm Orchestration](#33-actionable-design-recommendations-for-swarm-orchestration)
-    - [4. Agent Social Protocols & External Integration](#4-agent-social-protocols-external-integration)
-        - [4.1 OpenClaw and MoltBook Integration](#41-openclaw-and-moltbook-integration)
-        - [4.2 Key Social Protocols for Inter-Agent Communication](#42-key-social-protocols-for-inter-agent-communication)
-        - [4.3 Social Network Communication Diagram](#43-social-network-communication-diagram)
-    - [5. Spec-Driven Development (SDD) Workflow](#5-spec-driven-development-sdd-workflow)
-        - [5.1 SDD Workflow Diagram](#51-sdd-workflow-diagram)
-    - [6. Agent Economic Capabilities](#6-agent-economic-capabilities)
-    - [7. Human-in-the-Loop (HITL) Governance](#7-human-in-the-loop-hitl-governance)
-    - [8. Actionable Design Recommendations (Consolidated)](#8-actionable-design-recommendations-consolidated)
-    - [9. Conclusion & Future Work](#9-conclusion-future-work)
-        - [Research-Style Summary](#research-style-summary)
-        - [Human-Style Summary](#human-style-summary)
-        - [Future Improvement & Next Tasks](#future-improvement-next-tasks)
-    - [10. References](#10-references)
-4. [3. Conclusion](#3-conclusion)
-5. [4. Project Chimera: Submission Checklist](#4-project-chimera-submission-checklist)
-    - [4. Submission Checklist](#4-submission-checklist)
-    - [5. Assessment Rubric: Velocity vs. Distance](#5-assessment-rubric-velocity-vs-distance)
----
 
 # 1. Research Summary: Key Insights from the Reading Materials
 
@@ -95,6 +96,7 @@ The "Trillion Dollar AI Software Development Stack" article underscores a critic
 *   **Agentic Loops:** AI agents operate most effectively within iterative "Plan → Execute → Review" loops, enabling continuous refinement and self-correction. This contrasts sharply with one-shot prompt engineering.
 *   **Orchestration and Infrastructure Abstraction:** Scalable AI systems require sophisticated orchestration layers (like the Planner-Worker-Judge pattern) to manage distributed agent workloads. Furthermore, the Model Context Protocol (MCP) is vital for abstracting away the complexities of external APIs, allowing core agent logic to remain stable despite volatile external environments.
 *   **Factories, Not Scripts:** The emphasis is on building "AI-native software factories" that prioritize robust infrastructure (CI/CD, testing, containerization, traceability) to ensure reliability, safety, and scalability, rather than relying on brittle, unmaintainable scripts.
+Key Takeaway: AI-native software development shifts the source of truth from code to specifications, demanding robust infrastructure and orchestration.
 
 ## OpenClaw – Agent Social Networks
 
@@ -103,6 +105,7 @@ OpenClaw represents the emergence of agent social networks, where AI entities di
 *   **Agent Interoperability:** OpenClaw provides a protocol ecosystem for agents to expose their identity, capabilities, and status in a standardized manner. This is akin to HTTP for AI agents, enabling seamless inter-agent discovery and interaction.
 *   **Collaboration and Specialization:** Within these networks, agents can specialize, share knowledge, and negotiate tasks. This fosters emergent intelligence and allows for complex, multi-agent campaigns that would be impossible for a single, monolithic AI.
 *   **Critical Social Protocols:** For effective and safe inter-agent communication, specific social protocols are paramount. These include Agent Handshake (for identity verification and governance checks), Negotiated Collaboration (for structured task agreements), Knowledge Exchange (for value-driven information sharing), and Safety/Quarantine (for detecting and mitigating undesirable agent behaviors).
+Key Takeaway: OpenClaw provides the essential protocol ecosystem for Project Chimera agents to discover, interact, and collaborate securely within a broader agent social network.
 
 ## MoltBook – Social Media for Bots
 
@@ -111,6 +114,7 @@ MoltBook highlights the machine-scale social layer where bots post, comment, and
 *   **Agent-to-Agent Knowledge Sharing:** MoltBook facilitates the rapid dissemination of information and trends among agents, enabling a collective intelligence that enhances individual agent performance. This changes system intelligence by allowing agents to learn from a broader, real-time data stream generated by their peers.
 *   **Emergent Behavior:** The platform enables emergent behaviors, where agents develop their own "cultures" and coordination strategies. For Project Chimera, this means designing for, and governing, these emergent properties rather than trying to control every micro-interaction.
 *   **Marketplace for AI Services:** MoltBook functions as a marketplace where agents can share reusable skills, exchange data, and negotiate tasks, signaling trust through mechanisms like Proof-of-Compute or Proof-of-Stake.
+Key Takeaway: MoltBook serves as a machine-scale social layer, enabling Chimera agents to share knowledge, discover trends, and engage in economic transactions with other AI entities.
 
 ## Connection to This Project
 
@@ -165,9 +169,11 @@ The core of Project Chimera's internal cognition and execution is the FastRender
 
 ### 3.2 Agent Workflow Diagram
 
+The following diagram illustrates the hierarchical flow of tasks within the Planner-Worker-Judge architecture.
+
 ```mermaid
 graph TD
-    A[Perception: MCP Resources (e.g., News, Mentions)] --> B{Planner: Decompose Goal to Tasks}
+    A[Perception: MCP Resources] --> B{Planner: Decompose Goal to Tasks}
     B --> C(Task Queue - Redis)
     C --> D[Worker: Execute Task (via MCP Tools)]
     D --> E{Judge: Validate Output against Specs/Rules}
@@ -177,6 +183,10 @@ graph TD
     F --> H[Logging/Traceability]
     G --> H
     H --> B
+
+    style B fill:#FFC0CB,stroke:#333,stroke-width:2px
+    style D fill:#ADD8E6,stroke:#333,stroke-width:2px
+    style E fill:#90EE90,stroke:#333,stroke-width:2px
 ```
 
 ### 3.3 Actionable Design Recommendations for Swarm Orchestration
@@ -212,6 +222,8 @@ Project Chimera agents must interact with a broader ecosystem of AI entities. Op
 
 ### 4.3 Social Network Communication Diagram
 
+The diagram below illustrates the protocol-driven interaction between Chimera agents and the broader OpenClaw network.
+
 ```mermaid
 graph LR
     ChimeraAgentA[Chimera Agent A] -- Agent Handshake (Identity/Governance) --> OpenClawNetwork[OpenClaw Network]
@@ -220,6 +232,8 @@ graph LR
     ChimeraAgentB -- Judge Review & Approval --> ChimeraAgentA
     ChimeraAgentA -- Negotiate Task/Exchange Data --> OtherAgents[Other Agents (via OpenClaw/MoltBook)]
     OtherAgents -- Skill/Insight/Trend Data --> ChimeraAgentA
+
+    style ChimeraAgentB fill:#90EE90,stroke:#333,stroke-width:2px
 ```
 
 ## 5. Spec-Driven Development (SDD) Workflow
@@ -227,6 +241,8 @@ graph LR
 Project Chimera adopts SDD as a core philosophy, ensuring that intent is the source of truth and that agent actions are verifiable and aligned with strategic goals.
 
 ### 5.1 SDD Workflow Diagram
+
+This diagram shows the Spec-Driven Development lifecycle, from high-level business goals to a monitored production system.
 
 ```mermaid
 graph TD
@@ -240,14 +256,18 @@ graph TD
     G --> H[Production System]
     H --> I[Monitoring/Feedback/New Goals]
     I --> B
+
+    style C fill:#FFC0CB,stroke:#333,stroke-width:2px
+    style E fill:#ADD8E6,stroke:#333,stroke-width:2px
+    style F fill:#90EE90,stroke:#333,stroke-width:2px
 ```
 
 ## 6. Agent Economic Capabilities
 
 Project Chimera empowers agents with economic agency, transforming them into active participants in the digital economy.
 
-*   **Non-Custodial Wallet Management:** Each Chimera Agent will be assigned a unique, persistent, non-custodial wallet address via Coinbase AgentKit. Private keys will be secured using enterprise-grade secrets management.
-*   **Autonomous On-Chain Transactions:** Agents will be capable of executing transactions (e.g., `native_transfer`, `deploy_token`, `get_balance`) to pay for resources, services, or manage their own P&L.
+*   **Non-Custodial Wallet Management:** Each Chimera Agent is assigned a unique, persistent, non-custodial wallet address via Coinbase AgentKit. Private keys will be secured using enterprise-grade secrets management.
+*   **Autonomous On-Chain Transactions:** Agents execute autonomous on-chain transactions (e.g., `native_transfer`, `deploy_token`, `get_balance`) to pay for resources, services, or manage their own P&L.
 *   **Budget Governance:** A specialized "CFO" Judge agent will review all transaction requests, enforcing strict, configurable budget limits and flagging suspicious patterns for human review.
 
 ## 7. Human-in-the-Loop (HITL) Governance
@@ -278,10 +298,10 @@ Project Chimera represents a convergence of advanced AI architectural patterns: 
 
 ### Human-Style Summary
 
-At its heart, Project Chimera is about building a sophisticated "factory" where AI agents can operate safely and effectively. We're not just creating individual AI influencers; we're building the entire ecosystem that allows thousands of them to think, act, and even earn money autonomously. This means we're focusing on three big things:
-1.  **How our agents work internally:** Using a "Plan-Do-Review" system (Planner, Worker, Judge) to ensure every action is thought through and checked.
-2.  **How our agents talk to other AIs:** Using "social rules" (protocols) from OpenClaw and MoltBook so they can find, trust, and work with other agents in the digital world.
-3.  **How we keep everything safe and reliable:** By making sure every step is based on clear blueprints (specs), automatically tested, and overseen by humans when needed.
+Project Chimera builds a sophisticated "factory" for AI agents to operate safely and effectively. Instead of creating individual AI influencers, the project constructs an entire ecosystem that enables thousands of agents to think, act, and earn money autonomously. The system design prioritizes three core areas:
+1.  **Internal Agent Cognition:** A "Plan-Do-Review" system (Planner, Worker, Judge) ensures every action is evaluated and verified against strategic goals.
+2.  **External Agent Interoperability:** Agents use "social rules" (protocols) from OpenClaw and MoltBook to find, trust, and collaborate with other agents in the digital world.
+3.  **System Reliability and Safety:** Every operational step is based on clear specifications, automatically tested, and overseen by humans when necessary to ensure maximum safety and control.
 
 Our goal is to create a system so well-designed that AI agents can build and run the final influencer features themselves, with minimal human intervention, but maximum safety and control.
 
@@ -293,9 +313,9 @@ Our goal is to create a system so well-designed that AI agents can build and run
 
 ## 10. References
 
-*   OpenClaw documentation: [https://openclaw.org](https://openclaw.org)
-*   MoltBook analysis: [https://docs.moltbook.ai](https://docs.moltbook.ai)
-*   a16z AI software stack article: [https://a16z.com/the-trillion-dollar-ai-software-development-stack/](https://a16z.com/the-trillion-dollar-ai-software-development-stack/)
+*   [OpenClaw Documentation](https://openclaw.org) (Accessed: February 4, 2026)
+*   [MoltBook Documentation](https://docs.moltbook.ai) (Accessed: February 4, 2026)
+*   [The Trillion-Dollar AI Software Development Stack](https://a16z.com/the-trillion-dollar-ai-software-development-stack/) by a16z (Accessed: February 4, 2026)
 
 ---
 
@@ -305,34 +325,3 @@ Project Chimera stands at the forefront of autonomous AI systems, embodying a st
 
 ---
 
-# 4. Project Chimera: Submission Checklist
-
-## 4. Submission Checklist
-
-By the end of **today (February 4)** you should submit:-
-
-1.  A report that includes:
-    1.  **Research Summary:** What key insights did you take from the reading materials (a16z article, OpenClaw, MoltBook, SRS)?
-    2.  **Architectural Approach:** What agent pattern and infrastructure decisions are you leaning toward, and why?
-
-By the end of **Friday (February 6)**, you are **not** submitting a generated video. You are submitting the **Repository** that is ready to build it.
-
-1.  **Public GitHub Repository:**
-    *   Must contain specs/, tests/, skills/ (structure), Dockerfile, Makefile, .github/workflows/, and .cursor/rules.
-2.  **Loom** Video (Max 5 Mins):
-    *   Walk us through your **Spec Structure** and **OpenClaw Integration Plan**.
-    *   Show the **Failing Tests** running (proving the TDD approach).
-    *   Demonstrate your **IDE Agent's Context** (Ask it a question about the project and show that it answers using your rules).
-3.  **MCP Telemetry:**
-    *   Ensure **Tenx MCP Sense** was active. We will verify your "Thinking”. Make sure you connect to MCP Sense with the same GitHub account you submit your project with.
-
-## 5. Assessment Rubric: Velocity vs. Distance
-
-We measure your performance on a matrix of **Velocity** (Speed) and **Distance** (Engineering Depth).
-
-| Dimension          | The FDE Trainee (1-3 Points)                               | The Orchestrator (4-5 Points)                                                              |
-| :----------------- | :--------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
-| **Spec Fidelity**  | Good text descriptions (.md files).                        | **Executable Specs:** API schemas, Database ERDs, and OpenClaw protocols are defined and linked. |
-| **Tooling & Skills** | Basic MCP setup.                                           | **Strategic Tooling:** Clear separation of Dev MCPs vs. Runtime Skills; interfaces are well-defined. |
-| **Testing Strategy** | Basic unit tests.                                          | **True TDD:** Failing tests exist *before* implementation, defining the agent's goal posts. |
-| **CI/CD**          | Basic build pipeline.                                      | **Governance Pipeline:** Linting, Security Checks, and Testing run automatically in Docker.  |
