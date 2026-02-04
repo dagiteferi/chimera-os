@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "engagement_manager Input Schema",
+  "type": "object",
+  "required": ["skill_name", "parameters"],
+  "properties": {
+    "skill_name": {
+      "type": "string",
+      "const": "engagement_manager",
+      "description": "Skill identifier"
+    },
+    "parameters": {
+      "type": "object",
+      "required": ["interaction_type", "platform", "target_content_id", "target_user_id", "persona_constraints"],
+      "properties": {
+        "interaction_type": {
+          "type": "string",
+          "enum": ["reply", "comment", "dm", "like"],
+          "description": "Type of social media interaction"
+        },
+        "platform": {
+          "type": "string",
+          "enum": ["twitter", "instagram", "threads"],
+          "description": "Social media platform"
+        },
+        "target_content_id": {
+          "type": "string",
+          "description": "ID of the content being interacted with (e.g., tweet ID, post ID)"
+        },
+        "target_user_id": {
+          "type": "string",
+          "description": "ID of the user being interacted with"
+        },
+        "context": {
+          "type": "object",
+          "properties": {
+            "conversation_history": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Recent conversation messages"
+            },
+            "user_profile": {
+              "type": "object",
+              "properties": {
+                "followers": {"type": "integer"},
+                "verified": {"type": "boolean"},
+                "interests": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              },
+              "description": "User profile information"
+            },
+            "trending_topics": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Current trending topics for context"
+            }
+          },
+          "description": "Contextual information for response generation"
+        },
+        "persona_constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of persona constraints from SOUL.md (voice traits, directives, beliefs)"
+        }
+      }
+    }
+  }
+}

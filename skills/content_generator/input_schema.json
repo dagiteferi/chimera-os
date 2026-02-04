@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "content_generator Input Schema",
+  "type": "object",
+  "required": ["skill_name", "parameters"],
+  "properties": {
+    "skill_name": {
+      "type": "string",
+      "const": "content_generator",
+      "description": "Skill identifier"
+    },
+    "parameters": {
+      "type": "object",
+      "required": ["content_type", "platform", "topic"],
+      "properties": {
+        "content_type": {
+          "type": "string",
+          "enum": ["text", "image", "video", "multimodal"],
+          "description": "Type of content to generate"
+        },
+        "platform": {
+          "type": "string",
+          "enum": ["twitter", "instagram", "threads", "tiktok"],
+          "description": "Target social media platform"
+        },
+        "topic": {
+          "type": "string",
+          "description": "Topic or theme for content generation"
+        },
+        "persona_constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of persona constraints from SOUL.md (e.g., voice traits, directives)"
+        },
+        "character_reference_id": {
+          "type": "string",
+          "description": "Character LoRA identifier for image/video consistency (required for image/video content)"
+        },
+        "tier": {
+          "type": "string",
+          "enum": ["daily", "hero"],
+          "default": "daily",
+          "description": "Content tier: 'daily' uses Image-to-Video, 'hero' uses Text-to-Video"
+        },
+        "budget_limit_usdc": {
+          "type": "number",
+          "minimum": 0.0,
+          "description": "Maximum budget allocation for content generation (USDC)"
+        }
+      }
+    }
+  }
+}

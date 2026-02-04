@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "engagement_manager Output Schema",
+  "type": "object",
+  "required": ["interaction", "metadata"],
+  "properties": {
+    "interaction": {
+      "type": "object",
+      "required": ["type", "platform", "response_text", "sent_at"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["reply", "comment", "dm", "like"],
+          "description": "Type of interaction"
+        },
+        "platform": {
+          "type": "string",
+          "enum": ["twitter", "instagram", "threads"],
+          "description": "Platform where interaction occurred"
+        },
+        "response_text": {
+          "type": "string",
+          "description": "Generated response text"
+        },
+        "sent_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when interaction was sent"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["context_used", "relevance_score", "sentiment_score"],
+      "properties": {
+        "context_used": {
+          "type": "object",
+          "required": ["episodic_memory_count", "semantic_memory_count", "soul_md_sections"],
+          "properties": {
+            "episodic_memory_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of episodic memories (Redis) used"
+            },
+            "semantic_memory_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of semantic memories (Weaviate) used"
+            },
+            "soul_md_sections": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["backstory", "voice_traits", "core_beliefs", "directives"]
+              },
+              "description": "SOUL.md sections referenced in response generation"
+            }
+          }
+        },
+        "relevance_score": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Relevance score of response to context (0.0-1.0)"
+        },
+        "sentiment_score": {
+          "type": "number",
+          "minimum": -1.0,
+          "maximum": 1.0,
+          "description": "Sentiment score of response (-1.0 negative to 1.0 positive)"
+        }
+      }
+    }
+  }
+}

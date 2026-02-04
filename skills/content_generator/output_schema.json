@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "content_generator Output Schema",
+  "type": "object",
+  "required": ["content", "metadata"],
+  "properties": {
+    "content": {
+      "type": "object",
+      "required": ["text", "platform", "disclosure_level"],
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Generated caption/post text",
+          "maxLength": 280
+        },
+        "image_url": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "URL of generated image (if applicable)"
+        },
+        "video_url": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "URL of generated video (if applicable)"
+        },
+        "platform": {
+          "type": "string",
+          "enum": ["twitter", "instagram", "threads", "tiktok"],
+          "description": "Target platform"
+        },
+        "disclosure_level": {
+          "type": "string",
+          "enum": ["automated", "assisted", "none"],
+          "description": "AI disclosure level per platform requirements"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["generated_at", "generation_cost_usdc", "character_consistency_score", "brand_alignment_score"],
+      "properties": {
+        "generated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when content was generated"
+        },
+        "generation_cost_usdc": {
+          "type": "number",
+          "minimum": 0.0,
+          "description": "Cost of content generation in USDC"
+        },
+        "character_consistency_score": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Character consistency score (0.0-1.0), validated by Judge"
+        },
+        "brand_alignment_score": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Brand alignment score based on persona constraints (0.0-1.0)"
+        }
+      }
+    }
+  }
+}
