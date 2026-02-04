@@ -249,7 +249,7 @@ graph TD
     A[High-Level Business Goal] --> B(Spec Repository: specs/ - GitHub Spec Kit)
     B --> C{Planner: Decompose Goal to Executable Tasks}
     C --> D(Task Queue - Redis)
-    D --> E[Worker: Execute Task (Code/Skills)]
+    D --> E[Worker: Execute Task]
     E --> F{Judge: Validate Output against Specs}
     F -- Pass --> G[CI/CD Pipeline: Build/Test/Deploy]
     F -- Fail (Spec Mismatch) --> C
