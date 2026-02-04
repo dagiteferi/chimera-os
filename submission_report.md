@@ -184,9 +184,9 @@ graph TD
     G --> H
     H --> B
 
-    style B fill:#FFC0CB,stroke:#333,stroke-width:2px
-    style D fill:#ADD8E6,stroke:#333,stroke-width:2px
-    style E fill:#90EE90,stroke:#333,stroke-width:2px
+    style B fill:#AEC6CF,stroke:#333,stroke-width:2px
+    style D fill:#D3D3D3,stroke:#333,stroke-width:2px
+    style E fill:#77DD77,stroke:#333,stroke-width:2px
 ```
 
 ### 3.3 Actionable Design Recommendations for Swarm Orchestration
