@@ -1,0 +1,12 @@
+[project]
+name = "chimera-os"
+version = "0.1.0"
+description = "The core agentic operating system for the AiQEM Autonomous Influencer Network. Built with MCP-standardized connectivity, Swarm orchestration, and on-chain economic agency via Coinbase AgentKit."
+authors = [
+    {name = "Dagmawi Teferi", email = "dagiteferi2011@gmail.com"}
+]
+dependencies = [
+    "requests",
+    "pandas",
+    "matplotlib"
+]
