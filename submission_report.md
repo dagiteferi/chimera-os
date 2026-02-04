@@ -175,7 +175,7 @@ The following diagram illustrates the hierarchical flow of tasks within the Plan
 graph TD
     A[Perception: MCP Resources] --> B{Planner: Decompose Goal to Tasks}
     B --> C(Task Queue - Redis)
-    C --> D[Worker: Execute Task (via MCP Tools)]
+    C --> D[Worker: Execute Task]
     D --> E{Judge: Validate Output against Specs/Rules}
     E -- Approve (Confidence > 0.9) --> F[Action: Commit/Publish (via MCP Tools)]
     E -- Reject (Confidence < 0.7) --> B
@@ -230,7 +230,7 @@ graph LR
     OpenClawNetwork -- Verified Agent Identity --> ChimeraAgentB[Chimera Agent B]
     ChimeraAgentA -- Collaboration Proposal (MoltBook DM) --> ChimeraAgentB
     ChimeraAgentB -- Judge Review & Approval --> ChimeraAgentA
-    ChimeraAgentA -- Negotiate Task/Exchange Data --> OtherAgents[Other Agents (via OpenClaw/MoltBook)]
+    ChimeraAgentA -- Negotiate Task/Exchange Data --> OtherAgents[Other Agents]
     OtherAgents -- Skill/Insight/Trend Data --> ChimeraAgentA
 
     style ChimeraAgentB fill:#90EE90,stroke:#333,stroke-width:2px
