@@ -8,5 +8,7 @@ authors = [
 dependencies = [
     "requests",
     "pandas",
-    "matplotlib"
+    
+    "pytest",
+    "pydantic",
 ]
